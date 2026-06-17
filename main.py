@@ -2,17 +2,22 @@ from flask import Flask, request, render_template_string
 from ollama import chat
 import serial
 
+import serial
+
 DEMO_MODE = False
 
-# Arduino init (tylko jeśli NIE demo)
-arduino = None
+try:
+    arduino = serial.Serial("COM9", 9600, timeout=1)
+except:
+    arduino = None
+    DEMO_MODE = True
 
-if not DEMO_MODE:
-    try:
-        arduino = serial.Serial("COM9", 9600, timeout=1)
-    except Exception as e:
-        print("Arduino not connected:", e)
-        arduino = None
+
+def send(cmd):
+    if DEMO_MODE or arduino is None:
+        print("[DEMO]", cmd)
+    else:
+        arduino.write((cmd + "\n").encode())
 
 
 SYSTEM = """

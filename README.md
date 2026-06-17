@@ -26,7 +26,7 @@ The AI model interprets the user's prompt and sends the appropriate command to t
 - Flask  
 
 
-#### ARDUINO CONNECTION:
+### ARDUINO CONNECTION:
 - Communication: Serial (USB)
 - Default port: COM9 (change in code if needed)
 - Baud rate: 9600

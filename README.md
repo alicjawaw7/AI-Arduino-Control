@@ -6,27 +6,27 @@ A web application that allows users to control an Arduino LED using natural lang
 The AI model interprets the user's prompt and sends the appropriate command to the Arduino through a Python application.
 
 
-## AVAILABLE COMMANDS:
+### AVAILABLE COMMANDS:
 - LED ON  
 - LED OFF  
 - BLINK (with adjustable speed)
 
 
-## HOW DOES IT WORK?
+### HOW DOES IT WORK?
 1. The user enters a command on the website.
 2. The AI model interprets the request and converts it into a specific instruction for the Arduino.
 3. Python sends the command via serial communication.
 4. The Arduino executes the command and controls the LED.
 
 
-## TECHNOLOGIES:
+### TECHNOLOGIES:
 - Python  
 - Arduino  
 - AI model (Mistral from Ollama)  
 - Flask  
 
 
-## ARDUINO CONNECTION:
+#### ARDUINO CONNECTION:
 - Communication: Serial (USB)
 - Default port: COM9 (change in code if needed)
 - Baud rate: 9600

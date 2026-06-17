@@ -30,3 +30,13 @@ The AI model interprets the user's prompt and sends the appropriate command to t
 - Communication: Serial (USB)
 - Default port: COM9 (change in code if needed)
 - Baud rate: 9600
+
+### HOW TO RUN:
+
+1. Install requirements:
+   pip install -r requirements.txt
+2. Connect Arduino via USB
+3. Run:
+   python main.py
+4. Open browser:
+   http://127.0.0.1:5000

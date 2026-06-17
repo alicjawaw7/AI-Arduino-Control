@@ -2,7 +2,17 @@ from flask import Flask, request, render_template_string
 from ollama import chat
 import serial
 
-arduino = serial.Serial("COM9", 9600, timeout=1)
+DEMO_MODE = False
+
+arduino = None
+
+if not DEMO_MODE:
+    try:
+        arduino = serial.Serial("COM9", 9600, timeout=1)
+    except Exception as e:
+        print("Arduino not connected:", e)
+        arduino = None
+
 
 SYSTEM = """
 Convert user requests into commands.
@@ -11,23 +21,24 @@ Allowed commands only:
 
 ON
 OFF
-BLINK (and numer which is delay time, f.e. BLINK 200 if user want to blink 200)
+BLINK <number>
 
 Rules:
-- blink -> BLINK and appropriate number
 - turn on -> ON
 - turn off -> OFF
-- if user want to do sth else don't send anything -> NONE
-- if user want ot blink slow -> BLINK 500
-- if user want ot blink medium -> BLINK 300
-- if user want ot blink very slow -> BLINK 1000
-- if user want ot blink very fast -> BLINK 50
+- blink slow -> BLINK 500
+- blink medium -> BLINK 300
+- blink very slow -> BLINK 1000
+- blink very fast -> BLINK 50
+- if nothing valid -> NONE
 
 Return ONLY ONE command.
 No explanations.
 """
 
+
 app = Flask(__name__)
+
 
 HTML = """
 <!doctype html>
@@ -41,10 +52,6 @@ HTML = """
   <div class="bg-gray-800 p-6 rounded-2xl shadow-xl w-[500px]">
 
     <h1 class="text-xl font-bold mb-4">AI Arduino</h1>
-
-    <p class="text-gray-300 mb-4 whitespace-nowrap">
-      LED supports ON, OFF and BLINK with adjustable speed
-    </p>
 
     <form method="POST" class="flex gap-2">
       <input name="text"
@@ -60,7 +67,7 @@ HTML = """
     <p class="mt-4 text-green-400">AI: {{response}}</p>
 
     <p class="mt-6 text-sm text-gray-500">
-      Connected to Arduino via USB (COM9)
+      Mode: {{mode}}
     </p>
 
   </div>
@@ -69,13 +76,27 @@ HTML = """
 </html>
 """
 
+
+def send_to_arduino(cmd):
+    if DEMO_MODE:
+        print(f"[DEMO] {cmd}")
+        return
+
+    if arduino:
+        try:
+            arduino.write((cmd + "\n").encode())
+        except Exception as e:
+            print("Arduino write error:", e)
+    else:
+        print("Arduino not available")
+
+
 @app.route("/", methods=["GET", "POST"])
 def home():
-
     response = ""
+    mode = "DEMO" if DEMO_MODE else "LIVE"
 
     if request.method == "POST":
-
         try:
             user = request.form["text"]
 
@@ -92,9 +113,9 @@ def home():
             print("RAW:", cmd)
 
             cmd = cmd.strip().upper().split("\n")[0]
-            print("FINAL:", cmd)
 
-            arduino.write((cmd + "\n").encode())
+            if cmd != "NONE":
+                send_to_arduino(cmd)
 
             response = cmd
 
@@ -102,6 +123,8 @@ def home():
             print("ERROR:", e)
             response = "ERROR"
 
-    return render_template_string(HTML, response=response)
+    return render_template_string(HTML, response=response, mode=mode)
 
-app.run(debug=True, use_reloader=False)
+
+if __name__ == "__main__":
+    app.run(debug=True, use_reloader=False)

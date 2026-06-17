@@ -1,0 +1,11 @@
+AI-Arduino-Control/
+│
+├── main.py
+│
+├── ai-led-controller.ino
+│
+└── README.md
+│
+├── structure.txt
+│
+|── requirements.txt

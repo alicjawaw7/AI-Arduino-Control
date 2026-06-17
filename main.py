@@ -2,7 +2,7 @@ from flask import Flask, request, render_template_string
 from ollama import chat
 import serial
 
-DEMO_MODE = True
+DEMO_MODE = False
 
 # Arduino init (tylko jeśli NIE demo)
 arduino = None

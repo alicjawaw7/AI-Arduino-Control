@@ -9,6 +9,7 @@ Available commands:
 - LED OFF
 - BLINK (with adjustable speed)
 
+
 HOW DOES IT WORK?
 1. The user enters a command on the website.
 2. The AI model interprets the request and converts it into a specific instruction to the Arduino.

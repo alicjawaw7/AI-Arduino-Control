@@ -26,10 +26,11 @@ BLINK <number>
 Rules:
 - turn on -> ON
 - turn off -> OFF
-- blink slow -> BLINK 500
-- blink medium -> BLINK 300
-- blink very slow -> BLINK 1000
 - blink very fast -> BLINK 50
+- blink fast -> BLINK 100
+- blink medium -> BLINK 300
+- blink slow -> BLINK 500
+- blink very slow -> BLINK 1000
 - if nothing valid -> NONE
 
 Return ONLY ONE command.

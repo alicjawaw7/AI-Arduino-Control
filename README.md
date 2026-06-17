@@ -1,7 +1,20 @@
 # AI-Arduino-Control
 
 WHAT IS IT?
-A webapplication where you write a prompt to AI then it understand it and send ___ message throught python to an anruino (available moves: LED ON, LED OFF, BLINK with choose speed). 
+A web application that allows users to control an Arduino LED using natural language commands. The AI model interprets the user's prompt and sends the appropriate command to the Arduino through a Python application.
+
+Available commands:
+- LED ON
+- LED OFF
+- BLINK (with adjustable speed)
 
 HOW DOES IT WORK?
-The AI model can understand the message and send information to python then it send it to arduino and the LED execute it.
+1. The user enters a command on the website.
+2. The AI model interprets the request and converts it into a specific instruction to the Arduino.
+3. The Arduino executes the command by controlling the LED.
+
+TECHNOLOGIES:
+- Python
+- Arduino
+- AI model - Mistral form OLLAMA
+- Flask

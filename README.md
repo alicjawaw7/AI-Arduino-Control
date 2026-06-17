@@ -5,14 +5,12 @@
 A web application that allows users to control an Arduino LED using natural language commands.  
 The AI model interprets the user's prompt and sends the appropriate command to the Arduino through a Python application.
 
-\n
 
 ## AVAILABLE COMMANDS:
 - LED ON  
 - LED OFF  
 - BLINK (with adjustable speed)
 
-\n
 
 ## HOW DOES IT WORK?
 1. The user enters a command on the website.
@@ -20,14 +18,12 @@ The AI model interprets the user's prompt and sends the appropriate command to t
 3. Python sends the command via serial communication.
 4. The Arduino executes the command and controls the LED.
 
-\n
 
 ## TECHNOLOGIES:
 - Python  
 - Arduino  
 - AI model (Mistral from Ollama)  
 - Flask  
-
 
 
 ## ARDUINO CONNECTION:

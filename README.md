@@ -33,10 +33,19 @@ The AI model interprets the user's prompt and sends the appropriate command to t
 
 ### HOW TO RUN:
 
-1. Install requirements:
+1. Install Python dependencies:
    pip install -r requirements.txt
-2. Connect Arduino via USB
-3. Run:
+   
+3. Install Ollama:
+   https://ollama.com
+
+4. Download Mistral model:
+   ollama run mistral
+
+5. Connect Arduino via USB
+
+6. Run the project:
    python main.py
-4. Open browser:
+
+7. Open browser:
    http://127.0.0.1:5000

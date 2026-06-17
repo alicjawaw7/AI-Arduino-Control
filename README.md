@@ -1,6 +1,6 @@
 # AI-Arduino-Control
 
-## WHAT IS IT?
+### WHAT IS IT?
 
 A web application that allows users to control an Arduino LED using natural language commands.  
 The AI model interprets the user's prompt and sends the appropriate command to the Arduino through a Python application.

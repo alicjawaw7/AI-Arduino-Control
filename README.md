@@ -15,7 +15,7 @@ The AI model interprets the user's prompt and sends the appropriate command to t
 ### HOW DOES IT WORK?
 1. The user enters a command on the website.
 2. The AI model interprets the request and converts it into a specific instruction for the Arduino.
-3. Python sends the command t oArduino via serial communication.
+3. Python sends the command to Arduino via serial communication.
 4. The Arduino executes the command and controls the LED.
 
 
